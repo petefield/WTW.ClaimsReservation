@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WTW.ClaimsReservations.Console
+namespace WTW.ClaimsReservations.ConsoleApp
 {
     class Program
     {
