@@ -3,19 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ClaimsReservation.Models
+namespace ClaimsReservation.Core.Models
 {
-    public class Triangle
+    /// <summary>
+    /// Represents a claim triangle.
+    /// A Claim Triangle has a productname, earliest orgin year, and development years.
+    /// Matrix is a Dictionary indexed by origin year, the value of each origin
+    /// year is an array whose legnth is equal to the number of development years valid
+    /// for the origin year.
+    /// </summary>
+    /// <example>
+    /// 
+    /// <code>New Triangle("prodname", 1990, 4) </code>
+    /// creates the following triangle
+    ///         1   2   3   4
+    /// 1990    0   0   0   0
+    /// 1991    0   0   0
+    /// 1992    0   0
+    /// 1993    0
+    /// </example>
+    /// 
+    public class ClaimTriangle
     {
         public String ProductName { get; set; }
+
         public int EarliestOriginYear { get; set; }
+
         public int DevelopmentYears { get; set;  }
+
         public Dictionary<int, decimal[]> Matrix { get; set; }
 
-     
-
-
-        public Triangle(string productName, int minOrigin, int devYears)
+        public ClaimTriangle(string productName, int minOrigin, int devYears)
         {
             ProductName = productName;
             EarliestOriginYear = minOrigin;
@@ -28,21 +46,6 @@ namespace ClaimsReservation.Models
                 Matrix.Add(minOrigin + year, new decimal[devYears - year]);
             }
         }
-
-        public override string ToString()
-        {
-
-            var stringBuilder = new StringBuilder(ProductName);
-
-            foreach (var year in Matrix.Keys)
-            {
-                stringBuilder.Append(",").Append(string.Join(",", Matrix[year].Select(x => x.ToString("#,##0.##"))));
-            }
-
-            return stringBuilder.ToString();
-        }
-
-
     }
 
 }

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WTW.ClaimsReservation.Core\WTW.ClaimsReservation.Core.csproj" />
+    <ProjectReference Include="..\WTW.ClaimsReservation.Core\ClaimsReservation.Core.csproj" />
   </ItemGroup>
 
 </Project>

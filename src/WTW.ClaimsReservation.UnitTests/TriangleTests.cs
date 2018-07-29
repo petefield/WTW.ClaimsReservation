@@ -1,3 +1,4 @@
+using ClaimsReservation.Core.Models;
 using ClaimsReservation.Models;
 using System;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ClaimsReservation.Tests.Unit
         {
             var developmentYears = 20;
 
-            Triangle t = new Triangle("TestProduct", 1900, developmentYears);
+            ClaimTriangle t = new ClaimTriangle("TestProduct", 1900, developmentYears);
 
             var numberOfElements = t.Matrix.Sum(year => year.Value.Length);
 
@@ -26,7 +27,7 @@ namespace ClaimsReservation.Tests.Unit
         {
             var developmentYears = 20;
 
-            Triangle t = new Triangle("TestProduct", 1900, developmentYears);   
+            var t = new ClaimTriangle("TestProduct", 1900, developmentYears);   
             Assert.Equal(t.Matrix.Keys.Count, t.Matrix[1900].Length);
         }
 
@@ -35,7 +36,7 @@ namespace ClaimsReservation.Tests.Unit
         public void Triangles_Should_Have_ProductName()
         {
             var productName = "TestProduct";
-            var t = new Triangle(productName, 1900, 1);
+            var t = new ClaimTriangle(productName, 1900, 1);
             Assert.Equal(productName, t.ProductName);
         }
 

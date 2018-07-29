@@ -1,32 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ClaimsReservation.Core.Models;
+using ClaimsReservation.DataSources;
 using ClaimsReservation.Models;
 
-namespace ClaimsReservation
-{
-    public class TriangleSet
-    {
-        public TriangleSet(int earliestOriginYear, int numberOfDevlopementYears, IEnumerable<Triangle> triangles)
-        {
-            EarliestOriginYear = earliestOriginYear;
-            NumberOfDevelopmentYears = numberOfDevlopementYears;
-            Triangles = triangles;
-        }
-
-        public IEnumerable<Triangle> Triangles { get; set; }
-
-        public int EarliestOriginYear { get; set; }
-
-        public int NumberOfDevelopmentYears { get; set; }
-
-    }
-    
-    public class TriangleBuilder
+namespace ClaimsReservation.Core
+{  
+    /// <summary>
+    /// Turns a set of incremental data rows into 
+    /// a set of cummulative claim triangles.
+    /// </summary>
+    public class TriangleSetFactory
     {
         public IDataSource Source { get; set; }
 
-        private Triangle PopulateTriangle(Triangle triangle,  IEnumerable<DataRow> incrementalData)
+        public TriangleSetFactory() : this(null)
+        {
+        }
+
+        public TriangleSetFactory(IDataSource source)
+        {
+            Source = source;
+        }
+
+        /// <summary>
+        /// Populates a precreated triangle with data from a set 
+        /// of incremental data.
+        /// </summary>
+        /// <param name="triangle">The initialised but empty triangle to populate</param>
+        /// <param name="incrementalData">The data to insert into the triangle</param>
+        /// <returns></returns>
+        private ClaimTriangle PopulateTriangle(ClaimTriangle triangle,  IEnumerable<DataRow> incrementalData)
         {
             if (triangle == null) throw new ArgumentNullException(nameof(triangle));
             if (incrementalData == null) throw new ArgumentNullException(nameof(incrementalData));
@@ -52,6 +57,12 @@ namespace ClaimsReservation
             return triangle;
         }
 
+        /// <summary>
+        /// Calculate the maximum number of development years from 
+        /// a set of input data. 
+        /// </summary>
+        /// <param name="incrementalData">Input data</param>
+        /// <returns>The maximum number of development years</returns>
         private int CalculateNumberOfDevYears(IEnumerable<DataRow> incrementalData)
         {
             //Look for the largest difference between Origin Year and Dev year
@@ -64,15 +75,29 @@ namespace ClaimsReservation
             return spread.Max() + 1;
         }
 
+        /// <summary>
+        /// Create a TriangleSet from the source already set
+        /// </summary>
+        /// <returns>A triangle set containing 1 cummulative triangle per product in the source</returns>
         public TriangleSet Create() {
             if (Source == null) throw new InvalidOperationException("No Source specified");
-            return CreateFromInput(Source);
+            return Create(Source);
         }
 
-        public TriangleSet CreateFromInput(IDataSource parser)
-            => CreateFromDataRows(parser.ParsedData);
- 
-        public TriangleSet CreateFromDataRows(IEnumerable<DataRow> incrementalData)
+        /// <summary>
+        /// Create a TriangleSet from the data returned by <paramref name="source"/>
+        /// </summary>
+        /// <param name="source">An IDataSource used to parse the data used to build up the triangles</param>
+        /// <returns>A triangle set containing one cummulative triangle per product in the source</returns>
+        public TriangleSet Create(IDataSource source)
+            => Create(source.ParsedData);
+
+        /// <summary>
+        /// Create a TriangleSet from the data in <paramref name="incrementalData"/>
+        /// </summary>
+        /// <param name="incrementalData">The data used to build up the triangles</param>
+        /// <returns>A triangle set containing one cummulative triangle per product in the incremental data</returns>
+        public TriangleSet Create(IEnumerable<DataRow> incrementalData)
         {
 
             if (incrementalData == null) throw new ArgumentNullException(nameof(incrementalData));
@@ -82,7 +107,7 @@ namespace ClaimsReservation
 
             var triangles  = incrementalData
                 .GroupBy(row => row.Product)
-                .Select(productData => PopulateTriangle(new Triangle(productData.Key, minOriginYear, devYears), productData));
+                .Select(productData => PopulateTriangle(new ClaimTriangle(productData.Key, minOriginYear, devYears), productData));
 
             return new TriangleSet(minOriginYear, devYears, triangles);
 

@@ -1,4 +1,5 @@
-﻿using ClaimsReservation.Models;
+﻿using ClaimsReservation.Core;
+using ClaimsReservation.Models;
 using System.Linq;
 using Xunit;
 
@@ -19,8 +20,8 @@ namespace ClaimsReservation.Tests.Unit
                 new DataRow("Test Product 1", 1991, 1993, 3),
             };
 
-            var triangleBuilder = new TriangleBuilder();
-            var result = triangleBuilder.CreateFromDataRows(inputData);
+            var triangleSetBuilder = new TriangleSetFactory();
+            var result = triangleSetBuilder.Create(inputData);
 
             Assert.Equal(3,result.NumberOfDevelopmentYears);
 
@@ -38,9 +39,9 @@ namespace ClaimsReservation.Tests.Unit
                 new DataRow("Test Product 1", 1991, 1993, 3),
             };
 
-            var triangleBuilder = new TriangleBuilder();
+            var tsf = new TriangleSetFactory();
 
-            var result = triangleBuilder.CreateFromDataRows(inputData);
+            var result = tsf.Create(inputData);
 
             Assert.Equal(1990, result.EarliestOriginYear);
 
@@ -60,8 +61,8 @@ namespace ClaimsReservation.Tests.Unit
                 new DataRow("Test Product 1", 1991, 1992, 9),
             };
 
-            var triangleBuilder = new TriangleBuilder();
-            var result = triangleBuilder.CreateFromDataRows( inputData);
+            var tsf = new TriangleSetFactory();
+            var result = tsf.Create(inputData);
 
             Assert.Equal(8, result.Triangles.First().Matrix[1990].Last());
             Assert.Equal(10, result.Triangles.First().Matrix[1991].Last());
@@ -83,8 +84,8 @@ namespace ClaimsReservation.Tests.Unit
                 new DataRow("Test Product 2", 1991, 1992, 9),
             };
 
-            var triangleBuilder = new TriangleBuilder();
-            var result = triangleBuilder.CreateFromDataRows(inputData);
+            var tsf = new TriangleSetFactory();
+            var result = tsf.Create(inputData);
 
             Assert.Equal(2, result.Triangles.Count());
         }
@@ -103,8 +104,8 @@ namespace ClaimsReservation.Tests.Unit
                 new DataRow("Test Product 2", 1991, 1992, 9),
             };
 
-            var triangleBuilder = new TriangleBuilder();
-            var result = triangleBuilder.CreateFromDataRows(inputData);
+            var tsf = new TriangleSetFactory();
+            var result = tsf.Create(inputData);
 
             Assert.Equal(0, result.Triangles
                 .Single(triangle => triangle.ProductName == "Test Product 2")

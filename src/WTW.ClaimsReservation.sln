@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservation.Core", "WTW.ClaimsReservation.Core\WTW.ClaimsReservation.Core.csproj", "{A340E770-3954-4553-917D-A02694B79305}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClaimsReservation.Core", "WTW.ClaimsReservation.Core\ClaimsReservation.Core.csproj", "{A340E770-3954-4553-917D-A02694B79305}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservation.ConsoleApp", "WTW.ClaimsReservation.Console\WTW.ClaimsReservation.ConsoleApp.csproj", "{980898B4-372A-4AFF-82DD-A15FE7128EA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClaimsReservation.ConsoleApp", "WTW.ClaimsReservation.Console\ClaimsReservation.ConsoleApp.csproj", "{980898B4-372A-4AFF-82DD-A15FE7128EA7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservation.Core.UnitTests", "WTW.ClaimsReservation.UnitTests\WTW.ClaimsReservation.Core.UnitTests.csproj", "{2F94B698-1D54-415C-9150-1DD3ECD0ED35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests.ClaimsReservation.Core.UnitTests", "WTW.ClaimsReservation.UnitTests\UnitTests.ClaimsReservation.Core.UnitTests.csproj", "{2F94B698-1D54-415C-9150-1DD3ECD0ED35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTW.ClaimsReservation.ConsoleApp.UnitTest", "WTW.ClaimsReservation.ConsoleApp.UnitTest\WTW.ClaimsReservation.ConsoleApp.UnitTest.csproj", "{34268526-241F-426C-BB34-9DE9D90C45DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.ClaimsReservation.ConsoleApp", "WTW.ClaimsReservation.ConsoleApp.UnitTest\UnitTests.ClaimsReservation.ConsoleApp.csproj", "{34268526-241F-426C-BB34-9DE9D90C45DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTW.ClaimsReservation.DataSources", "WTW.ClaimsReservation.DataSources\WTW.ClaimsReservation.DataSources.csproj", "{0CAB443C-F520-466C-8882-DF869AABBFA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaimsReservation.DataSources", "WTW.ClaimsReservation.DataSources\ClaimsReservation.DataSources.csproj", "{0CAB443C-F520-466C-8882-DF869AABBFA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

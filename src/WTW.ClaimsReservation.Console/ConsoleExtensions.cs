@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ClaimsReservation.Clients
+namespace ClaimsReservation.ConsoleApp
 {
     public static class ConsoleEx
     {

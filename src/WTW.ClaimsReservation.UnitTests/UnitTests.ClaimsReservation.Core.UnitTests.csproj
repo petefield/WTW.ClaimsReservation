@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WTW.ClaimsReservation.Console\WTW.ClaimsReservation.ConsoleApp.csproj" />
+    <ProjectReference Include="..\WTW.ClaimsReservation.Core\ClaimsReservation.Core.csproj" />
+    <ProjectReference Include="..\WTW.ClaimsReservation.DataSources\ClaimsReservation.DataSources.csproj" />
   </ItemGroup>
 
 </Project>

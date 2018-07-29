@@ -7,12 +7,6 @@ namespace ClaimsReservation.DataSources
 {
     public class StreamDataSource : IDataSource
     {
-        public StreamDataSource(Stream stream)
-        {
-            if (stream == null) throw new ArgumentNullException("stream");
-            this.stream = stream;
-        }
-
         private const string HEADERCONTENTS = "Product,Origin Year,Development Year,Incremental Value";
         private readonly Stream stream;
         private enum Columns
@@ -22,6 +16,14 @@ namespace ClaimsReservation.DataSources
             DEVLOPMENTYEAR = 2,
             AMOUNT = 3
         }
+
+        public StreamDataSource(Stream stream)
+        {
+            if (stream == null) throw new ArgumentNullException("stream");
+            this.stream = stream;
+        }
+
+
 
         private int GetColumnValueAsInt(string[] tokens, Columns col, int row)
         {

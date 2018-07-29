@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using ClaimsReservation;
-using ClaimsReservation.Clients;
+using ClaimsReservation.Core;
+using ClaimsReservation.DataSources;
 
-namespace WTW.ClaimsReservation.ConsoleApp
+namespace ClaimsReservation.ConsoleApp
 {
-    class Program
+    static class Program
     {
-        private static string BuildOutputPath(string inputFilePath)
-        {
-            return Path.Combine(Path.GetDirectoryName(inputFilePath), Path.GetFileNameWithoutExtension(inputFilePath) + "_output" + Path.GetExtension(inputFilePath));
-        }
 
         private static Stream Open(string path)
         {
@@ -71,47 +67,51 @@ namespace WTW.ClaimsReservation.ConsoleApp
         {
             try
             {
+                // Get a file path. First from the command line args.
+                // If no args are specified, ask the user for a path.
                 var inputFilePath = Utilities.GetFileNameFromArgs(args) ?? Utilities.GetFileNameFromConsole();
 
-                if (inputFilePath == null)
+                if (inputFilePath == null) 
                 {
+                    // No file path was specified on either command 
+                    // line args or by user so we wont do any more 
+                    // work. We'll just allow the user to exit.
+
                     ConsoleEx.DisplayMessage("No file was specified", ConsoleColor.Red);
                 }
                 else
                 {
                     using (Stream inputFileStream = Open(inputFilePath))
                     {
-
-                        if (inputFileStream != null)
+                        // If inputFileStream is not null, user has 
+                        // entered a valid file path. Let's proceed.
+                        // Other wise we'll just exit.
+                  
+                        if (inputFileStream != null) 
                         {
-                            var outputFilePath = BuildOutputPath(inputFilePath);
+                            var outputFilePath = Utilities.BuildOutputPath(inputFilePath);
 
                             using (var outputStream = File.Create(outputFilePath))
                             {
-                                var triangleBuilder = new TriangleBuilder {
-                                    Source = new StreamDataSource(inputFileStream)
-                                };
+                                var triangleBuilder = new TriangleSetFactory(new StreamDataSource(inputFileStream));
+
                                 var outputWriter = new OutputWriter();
+
                                 outputWriter.WriteOutput(outputStream, triangleBuilder.Create());
                             }
 
                             DisplayOutputDetails(outputFilePath);
                             ConsoleEx.Prompt("Execution complete. Press any key to exit : ", ConsoleColor.Yellow);
-                            ConsoleEx.DisplayMessage("Closing", ConsoleColor.Green);
-                            
+                            ConsoleEx.DisplayMessage("Closing", ConsoleColor.Green);      
                         }
                     }
                 }
-   
             }
             catch (Exception ex)
             {
                 ConsoleEx.DisplayMessage($"An error occured : {ex.Message}", ConsoleColor.Red);
                 ConsoleEx.Prompt("Press any key to exit: ", ConsoleColor.Yellow);
-
             }
-
-
         }
     }
 }

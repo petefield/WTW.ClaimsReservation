@@ -1,6 +1,5 @@
 ﻿using ClaimsReservation.DataSources;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,7 +7,7 @@ using Xunit;
 
 namespace ClaimsReservation.Tests.Unit
 {
-    public class StreamParserTests
+    public class StreamDataSourceTests
     {
         [Fact]
         public void Should_Throw_ArgumentNullException_When_Stream_Null()
@@ -16,7 +15,7 @@ namespace ClaimsReservation.Tests.Unit
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                var fileDataSource = new StreamDataSource(null);
+                _ = new StreamDataSource(null);
             });
         }
 
@@ -33,7 +32,7 @@ namespace ClaimsReservation.Tests.Unit
 
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(content));
 
-            var StreamParser = new StreamDataSource(stream);
+            var StreamParser = new DataSources.StreamDataSource(stream);
 
             var ex = Assert.Throws<InvalidDataException>(() =>
             {
@@ -56,7 +55,7 @@ namespace ClaimsReservation.Tests.Unit
 
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(content));
 
-            var fileStreamData = new StreamDataSource(stream);
+            var fileStreamData = new DataSources.StreamDataSource(stream);
             var ex = Assert.Throws<InvalidDataException>(() =>
             {
                 fileStreamData.ParsedData.ToList();
@@ -77,7 +76,7 @@ namespace ClaimsReservation.Tests.Unit
 
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(content));
 
-            var fileStreamData = new StreamDataSource(stream);
+            var fileStreamData = new DataSources.StreamDataSource(stream);
 
             var ex = Assert.Throws<InvalidDataException>(() =>
             {
@@ -98,7 +97,7 @@ namespace ClaimsReservation.Tests.Unit
                             LongHistory,1990,1994,36";
 
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(content));
-            var fileDataSource = new StreamDataSource(stream);
+            var fileDataSource = new DataSources.StreamDataSource(stream);
             var dataItems = fileDataSource.ParsedData.ToList();
             Assert.Equal(5, dataItems.Count);
         }
@@ -115,7 +114,7 @@ namespace ClaimsReservation.Tests.Unit
 
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(content));
 
-            var fileStreamDataSource = new StreamDataSource(stream);
+            var fileStreamDataSource = new DataSources.StreamDataSource(stream);
 
             var dataItems = fileStreamDataSource.ParsedData.ToList();
 

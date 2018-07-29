@@ -1,13 +1,15 @@
-﻿using ClaimsReservation.Models;
-using System;
-using System.Collections.Generic;
+﻿using ClaimsReservation.Core.Models;
 using System.IO;
-using System.Text;
 
-namespace ClaimsReservation
+namespace ClaimsReservation.ConsoleApp
 {
     public class OutputWriter
     {
+        /// <summary>
+        /// Given a Triangle set, write the data to a file.
+        /// </summary>
+        /// <param name="output">The stream to write data to. Will be closed when method completed</param>
+        /// <param name="data">The <TriangleSet> to output </param>
         public void WriteOutput(Stream output, TriangleSet data)
         {
             using (var sw = new StreamWriter(output))
