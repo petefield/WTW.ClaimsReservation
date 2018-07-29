@@ -1,5 +1,7 @@
 ﻿using ClaimsReservation.Core.Models;
 using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace ClaimsReservation.ConsoleApp
 {
@@ -18,7 +20,14 @@ namespace ClaimsReservation.ConsoleApp
 
                 foreach (var t in data.Triangles)
                 {
-                    sw.WriteLine(t.ToString());
+                    var stringBuilder = new StringBuilder(t.ProductName);
+
+                    foreach (var year in t.Matrix.Keys)
+                    {
+                        stringBuilder.Append(",").Append(string.Join(",", t.Matrix[year].Select(x => x.ToString("#,##0.##"))));
+                    }
+
+                    sw.WriteLine(stringBuilder.ToString());
                 }
             }
         }

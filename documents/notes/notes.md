@@ -12,16 +12,24 @@ because triangles are equilateral n also = no origin years.
 
 initialise triangle n*n with all elements set to 0 so doesn't matter if missing data.
 
-n = min origin year - max development year
+n = min origin year - max development year NO!!!
 
 read from csv file to csv file.
 
 seperate input reading / parsing from triangle calculation.
 
+Proposed Structure
+
 core dll :
     -Define input model
     -Define triangle models
-    -Transform input into set of triangles
+
+Datasources
+    -DEfine function to read in CSV and transform into claimsTraignle
+
+    -Transform input
+
+
 
 console app :
     -Read data from file pass to cordll 
