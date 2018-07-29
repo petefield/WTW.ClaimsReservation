@@ -18,4 +18,14 @@ read from csv file to csv file.
 
 seperate input reading / parsing from triangle calculation.
 
+core dll :
+    -Define input model
+    -Define triangle models
+    -Transform input into set of triangles
+
+console app :
+    -Read data from file pass to cordll 
+    -Set of Triangle returned from core, output to file
+
+
 
