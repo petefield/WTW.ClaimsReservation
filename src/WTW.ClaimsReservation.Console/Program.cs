@@ -89,7 +89,7 @@ namespace WTW.ClaimsReservation.ConsoleApp
                             using (var outputStream = File.Create(outputFilePath))
                             {
                                 var triangleBuilder = new TriangleBuilder {
-                                    Source = new StreamParser(inputFileStream)
+                                    Source = new StreamDataSource(inputFileStream)
                                 };
                                 var outputWriter = new OutputWriter();
                                 outputWriter.WriteOutput(outputStream, triangleBuilder.Create());

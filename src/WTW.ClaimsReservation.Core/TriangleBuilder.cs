@@ -15,8 +15,11 @@ namespace ClaimsReservation
         }
 
         public IEnumerable<Triangle> Triangles { get; set; }
+
         public int EarliestOriginYear { get; set; }
+
         public int NumberOfDevelopmentYears { get; set; }
+
     }
     
     public class TriangleBuilder
@@ -67,7 +70,7 @@ namespace ClaimsReservation
         }
 
         public TriangleSet CreateFromInput(IDataSource parser)
-            => CreateFromDataRows(parser.Read());
+            => CreateFromDataRows(parser.ParsedData);
  
         public TriangleSet CreateFromDataRows(IEnumerable<DataRow> incrementalData)
         {

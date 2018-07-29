@@ -6,7 +6,7 @@ namespace ClaimsReservation
 
     public interface IDataSource
     {
-        IEnumerable<DataRow> Read();
+        IEnumerable<DataRow> ParsedData { get; }
     }
 
 

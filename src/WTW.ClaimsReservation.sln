@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservation.Core"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservation.ConsoleApp", "WTW.ClaimsReservation.Console\WTW.ClaimsReservation.ConsoleApp.csproj", "{980898B4-372A-4AFF-82DD-A15FE7128EA7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservation.UnitTests", "WTW.ClaimsReservation.UnitTests\WTW.ClaimsReservation.UnitTests.csproj", "{2F94B698-1D54-415C-9150-1DD3ECD0ED35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservation.Core.UnitTests", "WTW.ClaimsReservation.UnitTests\WTW.ClaimsReservation.Core.UnitTests.csproj", "{2F94B698-1D54-415C-9150-1DD3ECD0ED35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTW.ClaimsReservation.ConsoleApp.UnitTest", "WTW.ClaimsReservation.ConsoleApp.UnitTest\WTW.ClaimsReservation.ConsoleApp.UnitTest.csproj", "{34268526-241F-426C-BB34-9DE9D90C45DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTW.ClaimsReservation.DataSources", "WTW.ClaimsReservation.DataSources\WTW.ClaimsReservation.DataSources.csproj", "{0CAB443C-F520-466C-8882-DF869AABBFA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,30 @@ Global
 		{2F94B698-1D54-415C-9150-1DD3ECD0ED35}.Release|x64.Build.0 = Release|Any CPU
 		{2F94B698-1D54-415C-9150-1DD3ECD0ED35}.Release|x86.ActiveCfg = Release|Any CPU
 		{2F94B698-1D54-415C-9150-1DD3ECD0ED35}.Release|x86.Build.0 = Release|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Debug|x64.Build.0 = Debug|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Debug|x86.Build.0 = Debug|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Release|x64.ActiveCfg = Release|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Release|x64.Build.0 = Release|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Release|x86.ActiveCfg = Release|Any CPU
+		{34268526-241F-426C-BB34-9DE9D90C45DF}.Release|x86.Build.0 = Release|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Debug|x64.Build.0 = Debug|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Debug|x86.Build.0 = Debug|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Release|x64.ActiveCfg = Release|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Release|x64.Build.0 = Release|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Release|x86.ActiveCfg = Release|Any CPU
+		{0CAB443C-F520-466C-8882-DF869AABBFA8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

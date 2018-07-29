@@ -3,12 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace ClaimsReservation
+namespace ClaimsReservation.DataSources
 {
-    public class StreamParser : IDataSource
+    public class StreamDataSource : IDataSource
     {
-
-        public StreamParser(Stream stream)
+        public StreamDataSource(Stream stream)
         {
             if (stream == null) throw new ArgumentNullException("stream");
             this.stream = stream;
@@ -16,7 +15,6 @@ namespace ClaimsReservation
 
         private const string HEADERCONTENTS = "Product,Origin Year,Development Year,Incremental Value";
         private readonly Stream stream;
-
         private enum Columns
         {
             PRODUCTNAME = 0,
@@ -50,7 +48,7 @@ namespace ClaimsReservation
                 throw ex;
             }
 
-            return value;
+            return value.Trim();
         }
 
         private decimal GetColumnValueAsDecimal(string[] tokens, Columns col, int row)
@@ -66,42 +64,43 @@ namespace ClaimsReservation
             return value;
         }
 
-        public IEnumerable<DataRow> Read()
-        {
-            stream.Position = 0;
-
-            var reader = new StreamReader(stream);
-
-            string header = reader.ReadLine();
-
-            if (!header.Replace(", ", ",").Equals(HEADERCONTENTS, StringComparison.OrdinalIgnoreCase))
+        public IEnumerable<DataRow> ParsedData {
+            get
             {
-                throw new InvalidDataException($"Incorrect Header : Should be {HEADERCONTENTS}. Is {header}");
-            }
+                stream.Position = 0;
 
-            var rowIndex = 1;
+                var reader = new StreamReader(stream);
 
-            while (!reader.EndOfStream)
-            {
-                var row = reader.ReadLine();
-                var tokens = row.Split(',');
+                string header = reader.ReadLine();
 
-                if (tokens.Length != 4)
+                if (!header.Replace(", ", ",").Equals(HEADERCONTENTS, StringComparison.OrdinalIgnoreCase))
                 {
-                    var ex = new InvalidDataException($"Incorrect number of columns at row {rowIndex}");
-                    ex.Data.Add("row", rowIndex);
-                    throw ex;
+                    throw new InvalidDataException($"Incorrect Header : Should be {HEADERCONTENTS}. Is {header}");
                 }
 
-                var productName = GetColumnValueAsString(tokens, Columns.PRODUCTNAME, rowIndex);
-                var originYear = GetColumnValueAsInt(tokens, Columns.ORIGINYEAR, rowIndex);
-                var developYear = GetColumnValueAsInt(tokens, Columns.DEVLOPMENTYEAR, rowIndex);
-                var amount = GetColumnValueAsDecimal(tokens, Columns.AMOUNT, rowIndex);
-                rowIndex++;
-                yield return new DataRow(productName, originYear, developYear, amount);
+                var rowIndex = 1;
 
+                while (!reader.EndOfStream)
+                {
+                    var row = reader.ReadLine();
+                    var tokens = row.Split(',');
+
+                    if (tokens.Length != 4)
+                    {
+                        var ex = new InvalidDataException($"Incorrect number of columns at row {rowIndex}");
+                        ex.Data.Add("row", rowIndex);
+                        throw ex;
+                    }
+
+                    var productName = GetColumnValueAsString(tokens, Columns.PRODUCTNAME, rowIndex);
+                    var originYear = GetColumnValueAsInt(tokens, Columns.ORIGINYEAR, rowIndex);
+                    var developYear = GetColumnValueAsInt(tokens, Columns.DEVLOPMENTYEAR, rowIndex);
+                    var amount = GetColumnValueAsDecimal(tokens, Columns.AMOUNT, rowIndex);
+                    rowIndex++;
+                    yield return new DataRow(productName, originYear, developYear, amount);
+
+                }
             }
-
         }
     }
 
