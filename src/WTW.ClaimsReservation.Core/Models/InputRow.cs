@@ -4,10 +4,10 @@ using System.Text;
 
 namespace ClaimsReservation.Models
 {
-    public struct InputRow
+    public class DataRow
     {
 
-        public InputRow(string product, int originYear, int devYear, decimal value)
+        public DataRow(string product, int originYear, int devYear, decimal value)
         {
             IncrementalValue = value;
             DevelopmentYear = devYear;

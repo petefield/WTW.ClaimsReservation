@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WTW.ClaimsReservation.Core\WTW.ClaimsReservation.Core.csproj" />
+  </ItemGroup>
+
 </Project>

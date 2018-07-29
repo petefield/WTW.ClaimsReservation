@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using ClaimsReservation.Models;
 
 namespace ClaimsReservation
 {
 
-    public interface IParser
+    public interface IDataSource
     {
-        IEnumerable<InputRow> Read();
+        IEnumerable<DataRow> Read();
     }
 
 

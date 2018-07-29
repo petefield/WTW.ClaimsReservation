@@ -1,30 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ClaimsReservation.Models;
 
 namespace ClaimsReservation
 {
     public class TriangleSet
     {
-        public TriangleSet(int earliestOriginYear, int numberOfDevlopementYears, IList<Triangle> triangles)
+        public TriangleSet(int earliestOriginYear, int numberOfDevlopementYears, IEnumerable<Triangle> triangles)
         {
             EarliestOriginYear = earliestOriginYear;
             NumberOfDevelopmentYears = numberOfDevlopementYears;
             Triangles = triangles;
         }
 
-        public IList<Triangle> Triangles { get; set; }
+        public IEnumerable<Triangle> Triangles { get; set; }
         public int EarliestOriginYear { get; set; }
         public int NumberOfDevelopmentYears { get; set; }
     }
     
     public class TriangleBuilder
     {
-        public IParser Source { get; set; }
+        public IDataSource Source { get; set; }
 
-        private Triangle PopulateTriangle(Triangle triangle,  IEnumerable<InputRow> incrementalData)
+        private Triangle PopulateTriangle(Triangle triangle,  IEnumerable<DataRow> incrementalData)
         {
             if (triangle == null) throw new ArgumentNullException(nameof(triangle));
             if (incrementalData == null) throw new ArgumentNullException(nameof(incrementalData));
@@ -50,7 +49,7 @@ namespace ClaimsReservation
             return triangle;
         }
 
-        private int CalculateNumberOfDevYears(IEnumerable<InputRow> incrementalData)
+        private int CalculateNumberOfDevYears(IEnumerable<DataRow> incrementalData)
         {
             //Look for the largest difference between Origin Year and Dev year
 
@@ -67,21 +66,20 @@ namespace ClaimsReservation
             return CreateFromInput(Source);
         }
 
-        public TriangleSet CreateFromInput(IParser parser)
-            => CreateFromInputRows(parser.Read());
+        public TriangleSet CreateFromInput(IDataSource parser)
+            => CreateFromDataRows(parser.Read());
  
-        public TriangleSet CreateFromInputRows(IEnumerable<InputRow> incrementalData)
+        public TriangleSet CreateFromDataRows(IEnumerable<DataRow> incrementalData)
         {
 
             if (incrementalData == null) throw new ArgumentNullException(nameof(incrementalData));
 
             int minOriginYear = incrementalData.Min(row => row.OriginYear);
             int devYears = CalculateNumberOfDevYears(incrementalData);
-            
+
             var triangles  = incrementalData
                 .GroupBy(row => row.Product)
-                .Select(productData => PopulateTriangle(new Triangle(productData.Key, minOriginYear, devYears), productData))
-                .ToList();
+                .Select(productData => PopulateTriangle(new Triangle(productData.Key, minOriginYear, devYears), productData));
 
             return new TriangleSet(minOriginYear, devYears, triangles);
 

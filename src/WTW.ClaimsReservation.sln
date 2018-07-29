@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservation.Core", "WTW.ClaimsReservation.Core\WTW.ClaimsReservation.Core.csproj", "{A340E770-3954-4553-917D-A02694B79305}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservations.ConsoleApp", "WTW.ClaimsReservation.Console\WTW.ClaimsReservations.ConsoleApp.csproj", "{980898B4-372A-4AFF-82DD-A15FE7128EA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservation.ConsoleApp", "WTW.ClaimsReservation.Console\WTW.ClaimsReservation.ConsoleApp.csproj", "{980898B4-372A-4AFF-82DD-A15FE7128EA7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservation.UnitTests", "WTW.ClaimsReservation.UnitTests\WTW.ClaimsReservation.UnitTests.csproj", "{2F94B698-1D54-415C-9150-1DD3ECD0ED35}"
 EndProject
