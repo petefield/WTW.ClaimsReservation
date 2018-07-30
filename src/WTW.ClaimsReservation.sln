@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClaimsReservation.ConsoleAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.ClaimsReservation.Core", "WTW.ClaimsReservation.UnitTests\Tests.ClaimsReservation.Core.csproj", "{2F94B698-1D54-415C-9150-1DD3ECD0ED35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.ClaimsReservation.DataSources", "WTW.ClaimsReservation.ConsoleApp.UnitTest\Tests.ClaimsReservation.DataSources.csproj", "{34268526-241F-426C-BB34-9DE9D90C45DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.ClaimsReservation.DataSources", "WTW.ClaimsReservation.ConsoleApp.UnitTest\Tests.ClaimsReservation.DataSources.csproj", "{34268526-241F-426C-BB34-9DE9D90C45DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaimsReservation.DataSources", "WTW.ClaimsReservation.DataSources\ClaimsReservation.DataSources.csproj", "{0CAB443C-F520-466C-8882-DF869AABBFA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClaimsReservation.Data", "WTW.ClaimsReservation.DataSources\ClaimsReservation.Data.csproj", "{0CAB443C-F520-466C-8882-DF869AABBFA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.ClaimsReservation.Integration", "Tests.ClaimsReservation.Integration\Tests.ClaimsReservation.Integration.csproj", "{84DD283A-1104-4F45-B4AD-0D71C3D7DCAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.ClaimsReservation.Integration", "Tests.ClaimsReservation.Integration\Tests.ClaimsReservation.Integration.csproj", "{84DD283A-1104-4F45-B4AD-0D71C3D7DCAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTW.ClaimsReservation.WebApp", "WTW.ClaimsReservation.WebApp\WTW.ClaimsReservation.WebApp.csproj", "{D3CEAE2B-A491-437F-A371-F551A84A4864}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +99,18 @@ Global
 		{84DD283A-1104-4F45-B4AD-0D71C3D7DCAC}.Release|x64.Build.0 = Release|Any CPU
 		{84DD283A-1104-4F45-B4AD-0D71C3D7DCAC}.Release|x86.ActiveCfg = Release|Any CPU
 		{84DD283A-1104-4F45-B4AD-0D71C3D7DCAC}.Release|x86.Build.0 = Release|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Debug|x64.Build.0 = Debug|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Debug|x86.Build.0 = Debug|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Release|x64.ActiveCfg = Release|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Release|x64.Build.0 = Release|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Release|x86.ActiveCfg = Release|Any CPU
+		{D3CEAE2B-A491-437F-A371-F551A84A4864}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

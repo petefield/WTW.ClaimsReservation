@@ -1,0 +1,82 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+
+    table {
+        width: 100%;
+    }
+
+    td, th {
+        padding: 0px 15px;
+        text-align: center;
+    }
+</style>
+
+<div class="row">
+
+    <div class="col-md-10">
+
+        <h2>Select a file to import:</h2>
+
+        <form method="post" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label asp-for="PostedFile" class="control-label"></label>
+                <input asp-for="PostedFile" type="file" class="form-control" style="height:auto" />
+                <span asp-validation-for="PostedFile" class="text-danger"></span>
+            </div>
+
+            <input type="submit" value="Upload" class="btn btn-default" />
+
+        </form>
+
+        @if (Model.TriangleSet != null && Model.TriangleSet.Triangles.Any())
+        {
+            <h3>Triangles</h3>
+
+            <a href="@Model.DownloadPath">@Model.DownloadPath</a>
+
+            @foreach (var triangle in Model.TriangleSet.Triangles)
+            {
+                <h3>@triangle.ProductName</h3>
+
+                <table style="table-layout: fixed;">
+
+                    <thead>
+                        <tr>
+                            <th style="width:150px;">Origin Year</th>
+
+                            @for (int i = 1; i <= Model.TriangleSet.NumberOfDevelopmentYears; i++)
+                            {
+                                <th>@i</th>
+                            }
+
+                        </tr>
+                    </thead>
+
+                    @foreach (var year in triangle.Matrix.Keys)
+                    {
+                        <tr>
+                            <td>@year</td>
+
+                            @foreach (var amount in triangle.Matrix[year])
+                            {
+                                <td>@amount</td>
+
+                            }
+
+                        </tr>
+                    }
+
+                </table>
+
+            }
+        }
+
+    </div>
+
+</div>

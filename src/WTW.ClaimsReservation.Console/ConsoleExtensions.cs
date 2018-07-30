@@ -21,7 +21,6 @@ namespace ClaimsReservation.ConsoleApp
             var key = Prompt(message);
             Console.ResetColor();
             Console.WriteLine();
-
             return key;
         }
 

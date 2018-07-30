@@ -8,6 +8,11 @@ namespace ClaimsReservation.Core.Models
     /// </summary>
     public class TriangleSet
     {
+        public TriangleSet()
+        {
+
+        }
+
         public TriangleSet(int earliestOriginYear, int numberOfDevlopementYears, IEnumerable<ClaimTriangle> triangles)
         {
             EarliestOriginYear = earliestOriginYear;
