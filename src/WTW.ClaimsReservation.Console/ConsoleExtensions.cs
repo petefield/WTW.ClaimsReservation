@@ -16,9 +16,12 @@ namespace ClaimsReservation.ConsoleApp
 
         public static ConsoleKey Prompt(String message, ConsoleColor color)
         {
+            Console.WriteLine();
             Console.ForegroundColor = color;
             var key = Prompt(message);
             Console.ResetColor();
+            Console.WriteLine();
+
             return key;
         }
 
