@@ -24,7 +24,7 @@ namespace ClaimsReservation.ConsoleApp
 
                     foreach (var year in t.Matrix.Keys)
                     {
-                        stringBuilder.Append(",").Append(string.Join(",", t.Matrix[year].Select(x => x.ToString("#,##0.##"))));
+                        stringBuilder.Append(",").Append(string.Join(",", t.Matrix[year].Select(x => x.ToString("###0.##"))));
                     }
 
                     sw.WriteLine(stringBuilder.ToString());
