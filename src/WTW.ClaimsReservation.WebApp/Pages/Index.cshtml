@@ -10,73 +10,103 @@
         width: 100%;
     }
 
-    td, th {
-        padding: 0px 15px;
-        text-align: center;
-    }
-</style>
+    </style>
 
 <div class="row">
 
     <div class="col-md-10">
 
-        <h2>Select a file to import:</h2>
+        <div class="row">
+            <div class="col-xs-2">
+                <div style="position:fixed">
 
-        <form method="post" enctype="multipart/form-data">
+                    @if (Model.TriangleSet != null && Model.TriangleSet.Triangles.Any())
+                    {
+                        <h3>Products</h3>
+                        <ul>
+                            @foreach (var triangle in Model.TriangleSet.Triangles)
+                            {
+                                <li><a href="#@triangle.ProductName.ToLower().Replace(' ', '-')">@triangle.ProductName</a></li>
+                            }
+                        </ul>
 
-            <div class="form-group">
-                <label asp-for="PostedFile" class="control-label"></label>
-                <input asp-for="PostedFile" type="file" class="form-control" style="height:auto" />
-                <span asp-validation-for="PostedFile" class="text-danger"></span>
+                        <a href="@Model.DownloadPath">Download Output</a>
+
+                    }
+                </div>
             </div>
 
-            <input type="submit" value="Upload" class="btn btn-default" />
+            <div class="col-xs-10">
 
-        </form>
+                <div class="row" style="margin-bottom:-50px;">
+                
+                    <div class="col-xs-10">
+                        <h2>Select a file to import:</h2>
+                    </div>
+                <form method="post" enctype="multipart/form-data">
 
-        @if (Model.TriangleSet != null && Model.TriangleSet.Triangles.Any())
-        {
-            <h3>Triangles</h3>
+                    <div class="form-group">
+                        <div class="row">
+       
+                            <div class="col-xs-9">
+                                <input asp-for="PostedFile" type="file" class="form-control" style="height:auto" />
+                            </div>
+                            <div class="col-xs-1">
+                                <input type="submit" value="Upload" class="btn btn-default" />
+                            </div>
+                        </div>
+                        <span asp-validation-for="PostedFile" class="text-danger"></span>
+                    </div>
 
-            <a href="@Model.DownloadPath">@Model.DownloadPath</a>
+                </form>
 
-            @foreach (var triangle in Model.TriangleSet.Triangles)
-            {
-                <h3>@triangle.ProductName</h3>
+                </div>
+                @if (Model.TriangleSet != null && Model.TriangleSet.Triangles.Any())
+                {
 
-                <table style="table-layout: fixed;">
-
-                    <thead>
-                        <tr>
-                            <th style="width:150px;">Origin Year</th>
-
-                            @for (int i = 1; i <= Model.TriangleSet.NumberOfDevelopmentYears; i++)
-                            {
-                                <th>@i</th>
-                            }
-
-                        </tr>
-                    </thead>
-
-                    @foreach (var year in triangle.Matrix.Keys)
+                    @foreach (var triangle in Model.TriangleSet.Triangles)
                     {
-                        <tr>
-                            <td>@year</td>
+                        <div style="padding-top:50px;" id="@triangle.ProductName.ToLower().Replace(' ', '-')">
 
-                            @foreach (var amount in triangle.Matrix[year])
-                            {
-                                <td>@amount</td>
+                            <h3>@triangle.ProductName</h3>
 
-                            }
+                            <table style="table-layout: fixed;">
 
-                        </tr>
+                                <thead>
+                                    <tr>
+                                        <th class="text-left" style="width:80px"><strong>Origin</strong></th>
+
+                                        @for (int i = 1; i <= Model.TriangleSet.NumberOfDevelopmentYears; i++)
+                                        {
+                                            <th class="text-center">@i</th>
+                                        }
+
+                                    </tr>
+
+                                </thead>
+
+                                @foreach (var year in triangle.Matrix.Keys)
+                                {
+                                    <tr>
+                                        <td class="text-left" style="font-weight:bold">@year</td>
+
+                                        @foreach (var amount in triangle.Matrix[year])
+                                        {
+                                            <td align="center">@amount.ToString("0")</td>
+                                        }
+
+                                    </tr>
+                                }
+
+                            </table>
+
+                        </div>
                     }
+                    <div style="padding-bottom:300px"></div>
+                }
+            </div>
 
-                </table>
-
-            }
-        }
+        </div>
 
     </div>
-
 </div>
